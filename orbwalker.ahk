@@ -16,14 +16,14 @@ return
 /*
 this shit is for holding c down
 */
-^C::
-send, {Space}
-While, getkeystate("C", "P")
+C::
+send started{enter}              ;shows that the orbwalking has started
+While, getkeystate("C", "P")     ;while c is pressed down...
 {
-    send a
-    Sleep, 500
+    send a                       ;press a
+    Sleep, 500                   ;waits 500ms
 }
-send, {Space}
+send {enter}ended{Enter}         ;shows that the orbwalking has ended
 return
 
 /*
