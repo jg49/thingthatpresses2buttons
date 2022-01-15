@@ -14,7 +14,7 @@ Gui, Add, Text, xm y+20 w90 left , Attack Speed:
 return
 
 /*
-this shit is for holding c down
+this shit is for holding c down, probably while league game open too
 */
 C::
 send started{enter}              ;shows that the orbwalking has started
@@ -31,7 +31,7 @@ this shit is to terminate the script when you press the x on the gui
 */
 GuiClose:
 Gui, cancel
-MsgBox You will never do better than this
+MsgBox you're a scripter lmao
 ExitApp
 return
 ^x::ExitApp
