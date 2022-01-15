@@ -1,4 +1,10 @@
 #SingleInstance, force
+SendMode Input
+DetectHiddenWindows, On
+DetectHiddenText, On
+
+
+
 /*
 this shit is what the gui will have, aka champion dropdown and atkspd display
 */
@@ -11,20 +17,29 @@ Gui, Show, x0 y0 w300 h150, `t
 Gui, Add, Text, xm ym w55 left, Champion:
 Gui, Add, DropDownList, x+5 ym , Kog'Maw|Twitch|Master Yi
 Gui, Add, Text, xm y+20 w90 left , Attack Speed:
-return
+
+
 
 /*
 this shit is for holding c down, probably while league game open too
 */
 C::
-send started{enter}              ;shows that the orbwalking has started
-While, getkeystate("C", "P")     ;while c is pressed down...
+OrbWalk()
 {
-    send a                       ;press a
-    Sleep, 500                   ;waits 500ms
+    if WinExist("League of Legends (TM)")       ;checks if league is opened
+    {
+        send started{enter}              ;shows that the orbwalking has started
+        While, getkeystate("C", "P")     ;while c is pressed down...
+        {
+            send a                       ;press a
+            Sleep, 500                   ;waits 500ms
+            sendevent, {Click Left}      ;left clicks
+        }
+        send {enter}ended{Enter}         ;shows that the orbwalking has ended
+        return
+    }
 }
-send {enter}ended{Enter}         ;shows that the orbwalking has ended
-return
+
 
 /*
 this shit is to terminate the script when you press the x on the gui
@@ -34,4 +49,3 @@ Gui, cancel
 MsgBox you're a scripter lmao
 ExitApp
 return
-^x::ExitApp
